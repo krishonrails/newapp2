@@ -13,7 +13,7 @@
     <%if current_user%>
     <%if can? :create, Player %>
     <label class="welcome-msg">Welcome Admin! &nbsp;
-    <%= link_to "New Project", new_player_path %>&nbsp;<%= link_to "Sign Out", destroy_user_session_path, :method => :delete%>&nbsp;<%=link_to 'Home', '/'%></label>
+    <%= link_to "New Player", new_player_path %>&nbsp;<%= link_to "Sign Out", destroy_user_session_path, :method => :delete%>&nbsp;<%=link_to 'Home', '/'%></label>
     <%else%>
     <label class="signin-button">Welcome User! &nbsp;<%= link_to "Sign Out", destroy_user_session_path, :method => :delete%>&nbsp;<%=link_to 'Home', '/'%></label>
     <% end %>

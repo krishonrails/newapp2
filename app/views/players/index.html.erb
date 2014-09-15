@@ -9,7 +9,7 @@
     <th>Age</th>
     <th>Type of sport</th>
     <th>Country</th>
-    <th>Actions</th>
+    <% if can? :read, Player%><th>Actions</th><%end%>
   </tr>
 
 <% @players.each do |player| %>
@@ -19,11 +19,12 @@
     <td><%=((Time.now - player.dob.to_time)/(365*24*60*60)).round%>&nbsp;years</td>
     <td><%= player.type_of_sport %></td>
     <td><%= player.country %></td>
-    <td><%= link_to 'Show', player %>
+    <% if can? :read, Player%><td><%= link_to 'Show', '#', class: "myclass" %><input type="hidden" value="<%=player.id%>" class="player-history"><%end%>
     <% if can? :update,:delete, Player%>
     <%= link_to 'Edit', edit_player_path(player) %>
     <%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %><%end%></td>
   </tr>
+  
 <% end %>
 </table>
 <br/>
@@ -31,7 +32,24 @@
 <%#= link_to 'New Player', new_player_path %>
 <!--   <a>abcd</a> -->
 </div>
+</div>
 
+<div id="show-popup">
 
 </div>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.myclass').click(function(){
+        var playerHistory=$('.player-history').val();
+          $.ajax({
+            url: 'players/' + playerHistory,
+            data: 'GET',
+            success: function(retcode){
+              var abc=document.getElementById('show-popup');
+              abc.innerHTML=retcode;
+            }
+          });
+    });
+  });
+</script>
