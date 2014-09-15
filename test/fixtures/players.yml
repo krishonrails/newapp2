@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  dob: 2014-09-12 19:17:31
+  age: 2014-09-12 19:17:31
+  type_of_sport: MyString
+  country: MyString
+
+two:
+  name: MyString
+  dob: 2014-09-12 19:17:31
+  age: 2014-09-12 19:17:31
+  type_of_sport: MyString
+  country: MyString

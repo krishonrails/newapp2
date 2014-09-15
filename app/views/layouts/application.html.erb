@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NewApp</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="home-bar">
+    <label class="notice"><%= notice %></label>
+    <label class="alert"><%= alert %></label>
+    <%if current_user%>
+    <%if can? :create, Player %>
+    <label class="welcome-msg">Welcome Admin! &nbsp;
+    <%= link_to "New Project", new_player_path %>&nbsp;<%= link_to "Sign Out", destroy_user_session_path, :method => :delete%>&nbsp;<%=link_to 'Home', '/'%></label>
+    <%else%>
+    <label class="signin-button">Welcome User! &nbsp;<%= link_to "Sign Out", destroy_user_session_path, :method => :delete%>&nbsp;<%=link_to 'Home', '/'%></label>
+    <% end %>
+    <%else%>
+    <a href='/users/sign_in' class="signin-button" id="sign-in">Sign In</a>
+    <a href='/users/sign_up' class="signup-button">Sign Up</a>
+    <a href='/' class="signup-button">Home</a>
+    <%end%>
+  </div>
+  <%= yield %>
+</body>
+</html>

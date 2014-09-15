@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @player.name %>
+
+  <b>Type of sport:</b>
+  <%= @player.type_of_sport %>
+
+  <b>Country:</b>
+  <%= @player.country %>
+</p>
+<p>
+<% record = PlayerRecord.find_by_player_id(@player.id)%>
+<% if !record.nil?%>
+<%=record.records%>
+<%else%>
+Not Available
+<%end%>
+</p>
+
+<% if can? :update,:delete, Player%>
+<%= link_to 'Edit', edit_player_path(@player) %> 
+<%end%>
+<%= link_to 'Back', players_path %>

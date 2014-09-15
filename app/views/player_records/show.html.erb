@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Records:</b>
+  <%= @player_record.records %>
+</p>
+
+<p>
+  <b>Player:</b>
+  <%= @player_record.player_id %>
+</p>
+
+<% if can? :update,:delete, Player%>
+<%= link_to 'Edit', edit_player_record_path(@player_record) %> |
+<%end%>
+<%= link_to 'Back', player_records_path %>
+
